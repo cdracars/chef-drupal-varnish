@@ -12,7 +12,7 @@ node.override["drupal"]["apache"]["port"]="8080"
 
 execute "download-and-enable-varnish-module" do
   cwd "#{ node['drupal']['dir'] }/sites/default"
-  command "drush dl varnish --destination=sites/all/modules/contrib/; \
+  command "drush dl -y varnish --destination=sites/all/modules/contrib/; \
            drush en -y varnish;"
 end
 
