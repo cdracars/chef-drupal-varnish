@@ -24,9 +24,9 @@ template "#{ node['drupal']['dir'] }/varnish.conf" do
   end
 end
 
-execute "do stuff" do
+execute "append-varnish-config-to-bottom-of-settings.php" do
   cwd "#{ node['drupal']['dir'] }/sites/default"
-  command "cp settings.php settings.php.tmp; \
-           cat #{ node['drupal']['dir'] }/varnish.conf >> settings.php.tmp; \
-           mv settings.php.tmp settings.php;"
+  command "cp settings.php settings.php.varnish; \
+           cat #{ node['drupal']['dir'] }/varnish.conf >> settings.php.varnish; \
+           mv settings.php.varnish settings.php;"
 end
