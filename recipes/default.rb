@@ -8,12 +8,16 @@
 #
 # To-Do add attributes to abstract values
 
+require_recipe "drupal"
+require_recipe "varnish"
+
 node.override["drupal"]["apache"]["port"]="8080"
 
 execute "download-and-enable-varnish-module" do
   cwd "#{ node['drupal']['dir'] }/sites/default"
   command "drush dl -y varnish --destination=sites/all/modules/contrib/; \
            drush en -y varnish;"
+  not_if "drush pml --no-core --type=module --status=enabled | grep varnish"
 end
 
 template "#{ node['drupal']['dir'] }/varnish.conf" do
@@ -29,4 +33,5 @@ execute "append-varnish-config-to-bottom-of-settings.php" do
   command "cp settings.php settings.php.varnish; \
            cat #{ node['drupal']['dir'] }/varnish.conf >> settings.php.varnish; \
            mv settings.php.varnish settings.php;"
+  not_if "grep VarnishCache settings.php"
 end
