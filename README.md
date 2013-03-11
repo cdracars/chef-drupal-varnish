@@ -1,3 +1,5 @@
+#chef-drupal-varnish [![Build Status](https://secure.travis-ci.org/cdracars/chef-drupal-varnish.png?branch=master)](http://travis-ci.org/cdracars/chef-drupal-varnish)
+--------------------
 Description
 ===========
 
@@ -10,4 +12,3 @@ Attributes
 Usage
 =====
 
-[![Build Status](https://secure.travis-ci.org/cdracars/chef-drupal-varnish.png)](http://travis-ci.org/cdracars/chef-drupal-varnish)
