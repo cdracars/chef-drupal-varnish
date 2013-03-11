@@ -2,7 +2,7 @@
 # Cookbook Name:: Drupal Varnish
 # Recipe:: default
 #
-# Copyright 2012, Dracars Designs
+# Copyright 2013, Dracars Designs
 #
 # All rights reserved - Do Not Redistribute
 #
