@@ -8,8 +8,8 @@
 #
 # To-Do add attributes to abstract values
 
-require_recipe "drupal"
-require_recipe "varnish"
+include_recipe "drupal"
+include_recipe "varnish"
 
 node.override["drupal"]["apache"]["port"]="8080"
 
