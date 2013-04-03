@@ -36,13 +36,13 @@ execute "append-varnish-config-to-bottom-of-settings.php" do
   not_if "grep VarnishCache settings.php"
 end
 
-  node.default['varnish']['instance'] = node['hostname']
+node.default['varnish']['instance'] = node['hostname']
 
-  template "/etc/varnish/default.vcl" do
-    source "default.vcl.erb"
-    mode "0644"
-    notifies(:restart, "service[varnish]", :delayed)
-    only_if do
-      File.exists?("/etc/varnish/")
-    end
+template "/etc/varnish/default.vcl" do
+  source "default.vcl.erb"
+  mode "0644"
+  notifies(:restart, "service[varnish]", :delayed)
+  only_if do
+    File.exists?("/etc/varnish/")
   end
+end
