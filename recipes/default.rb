@@ -36,10 +36,6 @@ execute "append-varnish-config-to-bottom-of-settings.php" do
   not_if "grep VarnishCache settings.php"
 end
 
-# Varnish
-if node.varnish.attribute?("start")
-  include_recipe "varnish"
-
   node.default['varnish']['instance'] = node['hostname']
 
   template "/etc/varnish/default.vcl" do
@@ -50,4 +46,3 @@ if node.varnish.attribute?("start")
       File.exists?("/etc/varnish/")
     end
   end
-end
