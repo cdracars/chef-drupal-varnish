@@ -13,10 +13,15 @@ include_recipe "varnish"
 
 node.override["drupal"]["apache"]["port"]="8080"
 
-execute "download-and-enable-varnish-module" do
+execute "download-varnish-module" do
   cwd "#{ node['drupal']['dir'] }/sites/default"
-  command "drush dl -y varnish --destination=sites/all/modules/contrib/; \
-           drush en -y varnish;"
+  command "drush dl -y varnish --destination=sites/all/modules/contrib/;"
+  not_if "drush pml --no-core --type=module | grep varnish"
+end
+
+execute "enable-varnish-module" do
+  cwd "#{ node['drupal']['dir'] }/sites/default"
+  command "drush en -y varnish;"
   not_if "drush pml --no-core --type=module --status=enabled | grep varnish"
 end
 
