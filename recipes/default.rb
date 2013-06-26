@@ -36,11 +36,11 @@ end
 conf_plain_file "#{ node['drupal']['dir'] }/sites/default/settings.php" do
   pattern /\/\/ Add Varnish as the page cache handler./
   new_line "\n// Add Varnish as the page cache handler.
-            \n$conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
-            $conf['cache_class_cache_page'] = 'VarnishCache';
-            \n// Drupal 7 does not cache pages when we invoke hooks during bootstrap. This needs
-            // to be disabled.
-            \n$conf['page_cache_invoke_hooks'] = FALSE;"
+  \n$conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
+  $conf['cache_class_cache_page'] = 'VarnishCache';
+  \n// Drupal 7 does not cache pages when we invoke hooks during bootstrap. This needs
+  // to be disabled.
+  \n$conf['page_cache_invoke_hooks'] = FALSE;"
   action :insert_if_no_match
 end
 
