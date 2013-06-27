@@ -25,14 +25,6 @@ execute "enable-varnish-module" do
   not_if "drush pml --no-core --type=module --status=enabled | grep varnish"
 end
 
-template "#{ node['drupal']['dir'] }/varnish.conf" do
-  source "varnish.conf.erb"
-  mode 0755
-  not_if do
-    File.exists?("#{ node['drupal']['dir'] }/varnish.conf")
-  end
-end
-
 conf_plain_file "#{ node['drupal']['dir'] }/sites/default/settings.php" do
   pattern /\/\/ Add Varnish as the page cache handler./
   new_line "\n// Add Varnish as the page cache handler.
