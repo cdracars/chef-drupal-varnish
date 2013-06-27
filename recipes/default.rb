@@ -44,9 +44,6 @@ conf_plain_file "#{ node['drupal']['dir'] }/sites/default/settings.php" do
   action :insert_if_no_match
 end
 
-
-
-
 node.default['varnish']['instance'] = node['hostname']
 
 template "/etc/varnish/default.vcl" do
